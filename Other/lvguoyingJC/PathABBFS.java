@@ -1,5 +1,6 @@
 package cn.sjdeng.demo;
 
+import java.util.Arrays;
 /**
  * 求从A到B的路径，要求经过的城市数目最少
  */
@@ -21,9 +22,7 @@ public class PathABBFS {
 		}
 		boolean[] visited = new boolean[adjMatrix[0].length];
 		Queue<PathPoint> Q = new LinkedList<PathPoint>();
-		for (int i = 0; i < visited.length; i++) {
-			visited[i] = false;
-		}
+		Arrays.fill(visited,false);
 		PathPoint q = new PathPoint();
 		q.now = fromIndex;
 		q.last = null;
