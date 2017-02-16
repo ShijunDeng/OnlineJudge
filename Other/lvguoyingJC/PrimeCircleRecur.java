@@ -5,7 +5,11 @@ import java.util.Arrays;
 /**
  * 质数环问题：输入正整数n,把整数1,2,3……,n组成一个环,使得相邻两个整数之和均为素数。输出所有可能的排列方案。这里n<=20。
  */
-public class PrimeCircle {
+public class PrimeCircleRecur {
+	private int N;
+	private int[] number;
+	private boolean visited[];
+
 	/**
 	 * 判断是否是素数
 	 */
@@ -35,34 +39,29 @@ public class PrimeCircle {
 	}
 
 	public void primeCircle(int n) {
-		int[] number = new int[n];
-		boolean[] visited = new boolean[n];
-		int k = 0;
+		this.number = new int[n];
+		this.N = n;
+		this.visited = new boolean[n];
+		this.number[0] = 1;
+		this.tryK(1);
 		Arrays.fill(visited, false);
 		Arrays.fill(number, 0);
-		number[k] = 1;
-		visited[k] = true;
-		k++;
-		while (k > 0) {
-			number[k]++;
-			while (number[k] <= n && (this.check(number, k) == false || visited[number[k] - 1])) {
-				number[k]++;
-			}
-			if (number[k] <= n) {
-				visited[number[k] - 1] = true;
-				if (k == n - 1) {
-					System.out.println(Arrays.toString(number));
-				} else {
-					k++;
-					number[k] = 0;
+	}
+
+	private void tryK(int k) {
+		if (k >= this.N) {
+			System.out.println(Arrays.toString(this.number));
+			return;
+		}
+		for (int i = 2; i < this.N + 1; i++) {
+			this.number[k] = i;
+			if (this.check(this.number, k) && this.visited[i - 1] == false) {
+				this.visited[i - 1] = true;
+				tryK(k + 1);
+				Arrays.fill(this.visited, false);
+				for (int j = 0; j < k; j++) {
+					visited[number[j] - 1] = true;
 				}
-			} else {
-				Arrays.fill(visited, false);	
-				k--;
-				for(int i=0;i<k;i++){
-					visited[number[i]-1]=true;
-				}
-							
 			}
 		}
 	}
