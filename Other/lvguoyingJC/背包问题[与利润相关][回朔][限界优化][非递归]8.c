@@ -110,9 +110,9 @@ double tryKnap(double* comms,double* bonus,int* selected,int* optSelected,double
 			i=number-1;
 			for(j=0;j<number;j++)
 			{
-				optSelected[j]=selected[j];
-				maxBonus=partBonus;
+				optSelected[j]=selected[j];				
 			}
+            maxBonus=partBonus;
 		}//end:if #1
 		else//else#1 if#1 
 		{
