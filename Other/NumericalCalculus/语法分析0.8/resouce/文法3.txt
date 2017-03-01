@@ -1,0 +1,8 @@
+S->C0;
+C->bA|aB;
+A->aC|bAA;
+B->b|bC|aBB;
+
+
+
+

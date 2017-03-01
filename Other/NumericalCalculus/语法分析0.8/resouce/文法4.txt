@@ -1,0 +1,5 @@
+S->aH;
+H->aMd|d;
+M->Ab|$;
+A->aM|e;
+
