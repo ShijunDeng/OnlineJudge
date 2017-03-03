@@ -3,7 +3,7 @@ package cn.sjdeng.ali;
 import java.util.Random;
 /*
  * 
-![image](https://github.com/ShijunDeng/OnlineJudge/blob/master/Other/Ali2017/Ali2017Judge2.png)
+题目描述见：Ali2017Judge2.png
  */
 public class Ali2017Judge2 {
 	static double getP(int u1, int u2, int o1, int o2) {
