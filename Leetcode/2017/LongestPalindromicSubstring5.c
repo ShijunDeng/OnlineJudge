@@ -20,30 +20,55 @@ Input: "cbbd"
 
 Output: "bb"
 */
+char* longestPalindrome(char* s)
+{
+	int i,j,k;
+	int longest=0;
+	int ri=0,rj=0;
+	int str_len=strlen(s);
+	char*rs=NULL;
+	if(!s) {
+		return NULL;
+	}
+	for(k=0; k<str_len-1; k++) {
+		i=k;
+		if(s[i]==s[i+1]) {
+			j=i+1;
+			while(i>=0&&j<str_len&&s[i]==s[j]) {
+				i--;
+				j++;
+			}
+			if(j-i-1>longest) {
+				longest=j-i-1;
+				ri=i+1;
+				rj=j-1;
+			}
+		} 
+		i=k;
+		if(i-1>=0&&s[i-1]==s[i+1]) {
+			j=i+1;
+			i--;
+			while(i>=0&&j<str_len&&s[i]==s[j]) {
+				i--;
+				j++;
+			}
+			if(j-i-1>longest) {
+				longest=j-i-1;
+				ri=i+1;
+				rj=j-1;
+			}
+		} 
+	}
+	rs=(char *)malloc(sizeof(char)*(rj-ri+2));
+	//memset(rs,0,sizeof(rs));
+	strncpy(rs,s+ri,rj-ri+1);
+	rs[rj-ri+1]='\0';
+	return rs;
+}
 
-//从中间向两边展开  
-string expandAroundCenter(string s, int c1, int c2) {  
-  int l = c1, r = c2;  
-  int n = s.length();  
-  while (l >= 0 && r <= n-1 && s[l] == s[r]) {  
-    l--;  
-    r++;  
-  }  
-  return s.substr(l+1, r-l-1);  
-}  
-   
-string longestPalindromeSimple(string s) {  
-  int n = s.length();  
-  if (n == 0) return "";  
-  string longest = s.substr(0, 1);  // a single char itself is a palindrome  
-  for (int i = 0; i < n-1; i++) {  
-    string p1 = expandAroundCenter(s, i, i); //长度为奇数的候选回文字符串  
-    if (p1.length() > longest.length())  
-      longest = p1;  
-   
-    string p2 = expandAroundCenter(s, i, i+1);//长度为偶数的候选回文字符串  
-    if (p2.length() > longest.length())  
-      longest = p2;  
-  }  
-  return longest;  
-}  
+int main(void){
+	char str[20];
+	scanf("%s",str);
+	printf("%s\n",longestPalindrome(str));
+	return 0;
+}
