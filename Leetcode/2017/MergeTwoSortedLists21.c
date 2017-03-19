@@ -7,13 +7,7 @@ Subscribe to see which companies asked this question.
  *     struct ListNode *next;
  * };
  */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     struct ListNode *next;
- * };
- */
+
 struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
     struct ListNode head={0,0};
     struct ListNode *current=&head;
