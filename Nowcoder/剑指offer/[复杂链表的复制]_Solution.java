@@ -36,3 +36,66 @@ public class Solution {
 		return record.get(head);
 	}
 }
+
+/*
+public class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+*/
+public class Solution {
+    public RandomListNode Clone(RandomListNode pHead)
+    {
+        if(pHead == null){
+            return null;
+		}
+        //1.复制原始链表的任意结点N并创建新结点N',再把N'链接到N的后面
+        RandomListNode cpHead = pHead;
+        while(cpHead != null){
+            RandomListNode tmp = new RandomListNode(cpHead.label);
+			tmp.next = cpHead.next;
+            cpHead.next = tmp;
+            cpHead = tmp.next;
+        }
+        
+        //2.如果原始链表上的节点N的random指向S,则它对应的复制节点N'的random指向S的下一结点S'        
+        cpHead = pHead;
+        while(cpHead != null){
+            if(cpHead.random != null){
+                cpHead.next.random = cpHead.random.next;
+			}else{
+                cpHead.next.random = null;
+            }
+            cpHead = cpHead.next.next;
+        }
+        
+        //3.拆分上一步得到的表为两个表，奇数位置上的结点组成原始链表,偶数位置的结点组成复制出来的链表
+        cpHead = pHead.next;
+        RandomListNode newHead = cpHead;
+        pHead.next = cpHead.next;
+        pHead = pHead.next;
+        while(pHead != null){
+             cpHead.next = pHead.next;
+            pHead.next = pHead.next.next;
+            pHead = pHead.next;
+            cpHead = cpHead.next;
+        }
+        /*
+        
+        RandomListNode tmp, newHead = pHead.next;
+        cpHead = pHead;
+        while(cpHead.next != null){
+            tmp = cpHead.next;
+            cpHead.next =tmp.next;
+            cpHead = tmp;
+        }
+        
+        */
+        return newHead;
+    }
+}
