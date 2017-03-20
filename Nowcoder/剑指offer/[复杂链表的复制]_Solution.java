@@ -80,7 +80,7 @@ public class Solution {
         pHead.next = cpHead.next;
         pHead = pHead.next;
         while(pHead != null){
-             cpHead.next = pHead.next;
+            cpHead.next = pHead.next;
             pHead.next = pHead.next.next;
             pHead = pHead.next;
             cpHead = cpHead.next;
