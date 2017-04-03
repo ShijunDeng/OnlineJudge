@@ -2,6 +2,12 @@ package cn.sjdeng.demo;
 
 import java.util.Arrays;
 
+/**
+ * 最长公共子序列
+ * 
+ * @author ShijunDeng
+ *
+ */
 public class CommSequence {
 	private char[] strArray1;
 	private char[] strArray2;
@@ -90,7 +96,7 @@ public class CommSequence {
 		int[][] commLenArray = new int[str1.length()][str2.length()];
 		for (int i = 0; i < str1.length(); i++) {
 			if (strArray1[i] == strArray2[0]) {
-				while(i < str1.length()){
+				while (i < str1.length()) {
 					commLenArray[i][0] = 1;
 					i++;
 				}
@@ -100,7 +106,7 @@ public class CommSequence {
 		}
 		for (int j = 0; j < str2.length(); j++) {
 			if (strArray1[0] == strArray2[j]) {
-				while(j < str2.length()){
+				while (j < str2.length()) {
 					commLenArray[0][j] = 1;
 					j++;
 				}
@@ -128,31 +134,24 @@ public class CommSequence {
 		}
 		longest = commLenArray[str1.length() - 1][str2.length() - 1];
 		buildLcsL1(longest - 1, str1.length() - 1, str2.length() - 1, commLenArray);
-		
+
 		return longest;
 	}
 
 	private void buildLcsL1(int k, int i, int j, int[][] commLenArray) {
 		char[] comm = new char[k + 1];
 		while (k >= 0) {
-			if (i == 0) {
-				comm[k] = strArray1[i];
-				k--;
-				continue;
-			} else if (j == 0) {
-				comm[k] = strArray2[j];
-				k--;
-				continue;
-			}
-			if (commLenArray[i][j] == commLenArray[i - 1][j]) {
+			if (i > 0 && commLenArray[i][j] == commLenArray[i - 1][j]) {
 				i--;
-			} else if (commLenArray[i][j] == commLenArray[i][j - 1]) {
+			} else if (j > 0 && commLenArray[i][j] == commLenArray[i][j - 1]) {
 				j--;
 			} else {
-				if (commLenArray[i][j] == commLenArray[i - 1][j - 1] + 1) {
-					comm[k] = strArray1[i];
-					k--;
+				if ((i == 0 || j == 0) && commLenArray[i][j] == 1) {
+					comm[k] = strArray2[j];
+					break;
 				}
+				comm[k] = strArray2[j];
+				k--;
 				j--;
 			}
 		}
