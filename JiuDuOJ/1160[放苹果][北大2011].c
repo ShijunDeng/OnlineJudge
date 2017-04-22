@@ -1,7 +1,7 @@
 #include<stdio.h>
 //定义状态码
-#define OK 1
-#define ERROR 0
+#define OK 0
+#define ERROR -1
 typedef int Status;
 /*************************题目说明********************/
 /*

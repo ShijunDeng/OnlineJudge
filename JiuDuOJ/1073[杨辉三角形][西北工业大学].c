@@ -1,7 +1,7 @@
 #include<stdio.h>
 //¶¨Òå×´Ì¬Âë
-#define OK 1
-#define ERROR 0
+#define OK 0
+#define ERROR -1
 
 #define TRUE 1
 #define FALSE 0

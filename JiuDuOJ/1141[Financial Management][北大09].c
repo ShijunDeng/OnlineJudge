@@ -3,8 +3,8 @@
 //#include<malloc.h>
 //#include<math.h>
 //¶¨Òå×´Ì¬Âë
-#define OK 1
-#define ERROR 0
+#define OK 0
+#define ERROR -1
 
 typedef int Status;
 typedef int Boolean;
