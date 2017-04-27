@@ -8,19 +8,15 @@ int comp1(const void* a, const void* b)
 {
     return *((int*)a) - *((int*)b);
 }
-//普通的二维数组
 int comp2(const void *a, const void *b)
 {
     return ((int *)a)[0] - ((int *)b)[0];
 }
-//malloc申请的二维数组
 int comp3(const void* a, const void* b)
 {
-    int *ap = *(int **)a;
-    int *bp = *(int **)b;
-    return ap[0] - bp[0];
+    //这里不一定是2,还是要看具体的维度
+    return ((int (*)[2])a)[0] - ((int (*)[2])b)[0];
 }
-//malloc申请的二维数组
 int comp4(const void* a, const void* b)
 {
     int *ap = *(int **)a;
