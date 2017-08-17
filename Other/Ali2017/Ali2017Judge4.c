@@ -28,7 +28,7 @@ int search(const char *p) {
         return -1;
     }
     while (p[idx]) {
-        sum += p[idx] - '0';
+        sum += p[idx++] - '0';
     }
     diff = SUM - sum;
     return diff % 2 ? diff : diff + 9;
