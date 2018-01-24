@@ -1,4 +1,4 @@
-package xxx.biz.impl;
+package huawei.biz.impl;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
@@ -7,12 +7,12 @@ import com.google.common.collect.Table;
 import huawei.exam.CardEnum;
 import huawei.exam.ReturnCodeEnum;
 import huawei.exam.SubwayException;
-import xxx.biz.CardManager;
-import xxx.biz.SubwayManager;
-import xxx.model.Card;
-import xxx.model.ConsumeRecord;
-import xxx.model.Subways;
-import xxx.model.Subways.DistanceInfo;
+import huawei.biz.CardManager;
+import huawei.biz.SubwayManager;
+import huawei.model.Card;
+import huawei.model.ConsumeRecord;
+import huawei.model.Subways;
+import huawei.model.Subways.DistanceInfo;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -151,7 +151,7 @@ public class SubwayManagerImpl implements SubwayManager {
 			}
 			dist.put(v0, 0);
 			visited.put(v0, true);
-			for (String i : stations) {
+			for (int i = 1; i < stations.size(); i++) {
 				// 未访问过的且离v0最近的结点
 				String v = getMinDist(dist, visited);
 				Integer min = dist.get(v);
@@ -206,8 +206,10 @@ public class SubwayManagerImpl implements SubwayManager {
 	}
 
 	public Integer getShortestDistance(String enterStation, String exitStation) {
-		if (shortestDistances == null)
+		if (shortestDistances == null){
+			//initShortestDistancesFloyd();
 			initShortestDistancesDijkstra();
+		}
 
 		return shortestDistances.get(enterStation, exitStation);
 	}
